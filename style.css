@@ -2,27 +2,10 @@
 
 :root {
     --primary-color: #d4af37;
-    /* Gold */
-    --text-color: #eee;
-    --bg-color: #111;
-    --overlay-color: rgba(0, 0, 0, 0.6);
-    --font-heading: 'Noto Serif KR', serif;
-    --font-body: 'Montserrat', sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-body);
-    overflow: hidden;
     /* Prevent normal vertical scroll */
 }
+
+
 
 /* Horizontal Scrolling Container */
 .container {
@@ -166,6 +149,51 @@ p {
     color: #000;
 }
 
+/* Home Split Layout (Video Left, Text Right) */
+.home-split-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.video-wrapper {
+    flex: 1;
+    max-width: 600px;
+}
+
+.text-wrapper {
+    flex: 1;
+    text-align: left;
+    /* Align text to left naturally */
+}
+
+/* Keep buttons aligned left in text wrapper */
+.text-wrapper .hero-btn {
+    margin-top: 20px;
+    margin-right: 0;
+}
+
+/* Mobile Split Stack */
+@media screen and (max-width: 768px) {
+    .home-split-layout {
+        flex-direction: column-reverse;
+        /* Text Top, Video Bottom */
+        gap: 20px;
+        text-align: center;
+    }
+
+    .text-wrapper {
+        text-align: center;
+        /* Center text on mobile */
+    }
+}
+
 /* Technique Card Grid */
 .card-grid {
     display: grid;
@@ -193,29 +221,34 @@ p {
     font-size: 1.5rem;
 }
 
-/* Program List */
+/* Program List - Compact Layout */
 .program-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 Columns */
+    gap: 10px;
+    /* Reduced gap */
     text-align: left;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     overflow-y: auto;
-    /* Allow inner scrolling if list is too long */
-    max-height: 70vh;
-    padding-right: 10px;
+    max-height: 80vh;
+    /* Increased height availability */
+    padding-right: 5px;
 }
 
 .program-item {
     background: rgba(0, 0, 0, 0.5);
-    padding: 20px;
+    padding: 12px;
+    /* Reduced padding */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     transition: background 0.2s;
+    border-radius: 10px;
+    /* Smaller radius for smaller items */
 }
 
 .program-item:hover {
@@ -223,20 +256,29 @@ p {
 }
 
 .program-info h4 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
+    font-size: 1rem;
+    /* Smaller font */
+    margin-bottom: 3px;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+    /* Prevents overlap */
 }
 
 .program-info span {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #aaa;
 }
 
 .program-price {
     color: var(--primary-color);
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    /* Smaller price font */
+    min-width: 80px;
+    text-align: right;
 }
 
 /* Interactive Elements */
@@ -346,108 +388,360 @@ p {
     top: 10px;
     right: 20px;
     font-size: 2rem;
+}
 
-    /* Review & Gallery */
-    #review-gallery .content {
-        align-items: flex-start;
-        /* Override center alignment */
-    }
+/* Review & Gallery */
+/* Rounded Corners & UI Softening */
+.hero-btn,
+.utility-btn,
+.fab-btn {
+    border-radius: 30px !important;
+}
 
-    /* Gallery Grid */
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        margin-top: 20px;
-    }
+.card {
+    border-radius: 20px;
+}
 
-    .gallery-grid img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: transform 0.3s, filter 0.3s;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+.program-item {
+    border-radius: 20px;
+}
 
-    .gallery-grid img:hover {
-        transform: scale(1.05);
-        filter: brightness(1.2);
-        z-index: 10;
-    }
+.review-card {
+    border-radius: 20px;
+}
 
-    /* Review List */
-    .review-list {
-        max-height: 300px;
-        overflow-y: auto;
-        margin-bottom: 20px;
-        text-align: left;
-        padding-right: 10px;
-    }
+.modal-content {
+    border-radius: 20px;
+}
 
-    .review-card {
-        background: rgba(0, 0, 0, 0.3);
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
+input,
+select,
+textarea {
+    border-radius: 15px !important;
+}
 
-    .review-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 5px;
-    }
+/* Lightbox Navigation */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 2001;
+    border-radius: 50%;
+    transition: background 0.3s;
+    user-select: none;
+}
 
-    .review-name {
-        font-weight: 600;
-        color: var(--primary-color);
-    }
+.lightbox-nav:hover {
+    background: var(--primary-color);
+    color: black;
+}
 
-    .review-rating {
-        color: #ffc107;
-    }
+.prev {
+    left: 20px;
+}
 
-    .review-body {
-        font-size: 0.95rem;
-        color: #ddd;
-        line-height: 1.5;
-    }
+.next {
+    right: 20px;
+}
 
-    /* Review Form */
-    .review-form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .review-form input,
-    .review-form select,
-    .review-form textarea {
+/* Mobile Lightbox Nav adjustments */
+@media screen and (max-width: 768px) {
+    .lightbox-nav {
         padding: 10px;
-        background: rgba(0, 0, 0, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: #fff;
-        border-radius: 5px;
-        font-family: var(--font-body);
+        font-size: 1.5rem;
     }
 
-    .review-form textarea {
-        min-height: 80px;
-        resize: vertical;
+    .prev {
+        left: 10px;
     }
 
-    /* Scrollbar Style for Lists */
-    .review-list::-webkit-scrollbar,
-    .program-list::-webkit-scrollbar {
-        width: 6px;
+    .next {
+        right: 10px;
+    }
+}
+
+/* Gallery Refinement */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 120px;
+    /* Reduced height to fit more */
+    object-fit: cover;
+    border-radius: 15px;
+    /* Soft edges for images */
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+    z-index: 10;
+}
+
+/* Review List */
+.review-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-right: 10px;
+}
+
+.review-card {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    /* More padding for softness */
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+}
+
+.review-name {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.review-rating {
+    color: #ffc107;
+}
+
+.review-body {
+    font-size: 0.95rem;
+    color: #ddd;
+    line-height: 1.5;
+}
+
+/* Review Form */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-family: var(--font-body);
+}
+
+.review-form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Scrollbar Style for Lists */
+.review-list::-webkit-scrollbar,
+.program-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.review-list::-webkit-scrollbar-thumb,
+.program-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+/* Mobile Optimization */
+@media screen and (max-width: 768px) {
+
+    /* Global Typography */
+    h1 {
+        font-size: 2rem;
     }
 
-    .review-list::-webkit-scrollbar-thumb,
-    .program-list::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 3px;
+    h2 {
+        font-size: 1.8rem;
     }
+
+    p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+        padding: 15px 20px;
+        background: rgba(0, 0, 0, 0.9);
+        /* Solid bg for readability */
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        gap: 15px;
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+        /* Allow wrapping */
+        justify-content: center;
+    }
+
+    .nav-links li a {
+        letter-spacing: 0;
+    }
+
+    /* Layout Adjustments */
+    .content {
+        padding: 0 20px;
+        max-width: 100%;
+    }
+
+    section {
+        padding: 100px 20px 80px;
+    }
+
+    /* Adjust padding for nav/bottom bar */
+
+    /* Home Section */
+    #home .content {
+        padding-top: 60px;
+    }
+
+    /* Technique Grid */
+    .card-grid {
+        grid-template-columns: 1fr;
+        /* 1 Column */
+        gap: 15px;
+        max-height: 60vh;
+        overflow-y: auto;
+        /* Scrollable grid */
+        padding-bottom: 20px;
+    }
+
+    /* Program List */
+    .program-list {
+        grid-template-columns: 1fr;
+        /* 1 Column */
+        max-height: 55vh;
+    }
+
+    /* Review & Gallery Section */
+    #review-gallery .content {
+        flex-direction: column;
+        /* Stack vertically */
+        gap: 30px;
+        align-items: stretch;
+        overflow-y: auto;
+        max-height: 85vh;
+        /* Allow internal scrolling manually */
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for images */
+    }
+
+    /* Utility Bar Position */
+    .utility-bar {
+        bottom: 10px;
+        right: 10px;
+        font-size: 1.8rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    /* Hide nav on very small screens, or require hamburger */
+    /* Alternative: Hamburger Menu (Simplified: Show only essential or scrollable row) */
+    .nav-links {
+        display: flex;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 5px;
+        white-space: nowrap;
+        width: 100%;
+    }
+}
+
+
+/* Rounded Corners & UI Softening (Re-applied) */
+.hero-btn,
+.utility-btn,
+.fab-btn {
+    border-radius: 30px !important;
+}
+
+.card {
+    border-radius: 20px;
+    overflow: hidden;
+    /* Ensure content clip */
+}
+
+.program-item {
+    border-radius: 20px;
+}
+
+.review-card {
+    border-radius: 20px;
+}
+
+.modal-content {
+    border-radius: 20px;
+}
+
+input,
+select,
+textarea {
+    border-radius: 15px !important;
+}
+
+/* Gallery Refinement (Re-applied) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+    z-index: 10;
+}
+
+/* Review Card Padding Fix */
+.review-card {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}

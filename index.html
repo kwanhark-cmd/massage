@@ -23,20 +23,37 @@
         </ul>
     </nav>
 
+    <!-- Intro Overlay Removed -->
+
     <!-- Horizontal Container -->
     <div class="container">
         <!-- Home Section -->
-        <section id="home">
-            <video autoplay muted loop playsinline
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-                <source src="videos/스파-테라A.mp4" type="video/mp4">
-            </video>
+        <section id="home" style="background-image: url('images/bg_home.jpg');">
             <div class="overlay"></div>
-            <div class="content">
-                <h3>Seoul's Luxury Spa Shop in Korea</h3>
-                <h1>DEORIENTAL SPA</h1>
-                <p>평범한 스파는 잊으세요. 이제 '오리엔탈 프리미엄'을 경험할 시간.<br>단 한 번의 방문으로, 일상 탈출을 약속합니다.</p>
-                <a href="#program" class="hero-btn">Reservation</a>
+            <div class="content home-split-layout">
+
+                <!-- Text Content (Left) -->
+                <div class="text-wrapper" id="home-text-wrapper">
+                    <h3 id="home-subtitle" data-key="home.subtitle">Seoul's Luxury Spa Shop in Korea</h3>
+                    <h1 id="home-title" data-key="home.title">DEORIENTAL SPA</h1>
+                    <p id="home-desc" data-key="home.desc">평범한 스파는 잊으세요. 이제 '오리엔탈 프리미엄'을 경험할 시간.<br>단 한 번의 방문으로, 일상 탈출을
+                        약속합니다.</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#program" class="hero-btn">Reservation</a>
+                    </div>
+                </div>
+
+                <!-- Video Container (Right) -->
+                <div class="video-wrapper">
+                    <div class="video-container"
+                        style="width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <video autoplay muted loop playsinline poster="images/bg_home.jpg"
+                            style="width: 100%; display: block;">
+                            <source src="videos/hero_video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Utility Floating Buttons (Admin/Settings) -->
@@ -47,124 +64,160 @@
                     <button id="sound-toggle" class="fab-btn">🔇</button>
                 </div>
 
-                <button id="admin-toggle" class="fab-btn">⋮</button>
-                <div id="admin-panel" class="admin-panel">
-                    <button class="utility-btn" id="change-bg-btn">배경 변경</button>
-                    <button class="utility-btn" id="admin-login-btn">관리자 로그인</button>
-                </div>
-            </div>
-            <!-- Hidden File Input for Background Change -->
-            <input type="file" id="bg-upload" accept="image/*,video/*" style="display: none;">
-        </section>
+                <!-- Admin Toggle Button Restored -->
+                <button id="admin-toggle" class="fab-btn" style="background: rgba(255,255,255,0.2);">⋮</button>
 
-        <!-- About Section -->
-        <section id="about" style="background-image: url('images/bg_about.jpg');">
-            <div class="overlay"></div>
-            <div class="content">
-                <h2>PREMIUM ORIENTAL SPA</h2>
-                <p>"멈춰버린 당신의 시간, 디오리엔탈스파에서 다시 흐르다."</p>
-                <p>최고급 테라피스트, 최상급 오일. 당신의 피부가 원하는 단 하나의 선택.<br>
-                    1:1 맞춤형 컨설팅으로 당신의 몸 상태에 가장 완벽한 케어를 설계해 드립니다.</p>
-                <br>
-                <button class="hero-btn" id="shop-tour-btn">Shop Tour Video</button>
-                <!-- Hidden File Input for Video Upload (Admin) -->
-                <input type="file" id="video-upload" accept="video/*" style="display: none;">
-            </div>
-        </section>
-
-        <!-- Technique Section -->
-        <section id="technique" style="background-image: url('images/bg_technique.jpg');">
-            <div class="overlay"></div>
-            <div class="content">
-                <h2>Our Techniques</h2>
-                <div class="card-grid">
-                    <div class="card" onclick="showDetail('aroma')">
-                        <h3>Aroma / Oil</h3>
-                        <p>향기 테라피</p>
+                <!-- Layout Editor Controls (Initially Hidden) -->
+                <div id="layout-editor"
+                    style="display: none; background: rgba(0,0,0,0.8); padding: 10px; border-radius: 10px; margin-top: 10px;">
+                    <div style="margin-bottom: 10px;">
+                        <span
+                            style="display:block; color:var(--primary-color); font-size:0.8rem; margin-bottom:5px;">Video
+                            Layout</span>
+                        <label>X: <input type="range" id="vid-x" min="-500" max="500"></label>
+                        <label>Y: <input type="range" id="vid-y" min="-500" max="500"></label>
+                        <label>Scale: <input type="range" id="vid-scale" min="0.5" max="2" step="0.1"></label>
                     </div>
-                    <div class="card" onclick="showDetail('dry')">
-                        <h3>Dry / Therapy</h3>
-                        <p>건식 마사지</p>
-                    </div>
-                    <div class="card" onclick="showDetail('foot')">
-                        <h3>Foot Special</h3>
-                        <p>전문 발마사지</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Program Section -->
-        <section id="program" style="background-image: url('images/bg_program.jpg');">
-            <div class="overlay"></div>
-            <div class="content">
-                <h2>Program & Pricing</h2>
-                <p>12월 할인 & 회원가 특별 혜택</p>
-                <div class="program-list" id="program-list">
-                    <!-- Items will be injected via JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Location & Contact Section -->
-        <section id="location" style="background-image: url('images/bg_location.jpg');">
-            <div class="overlay"></div>
-            <div class="content">
-                <h2>Location & Inquiry</h2>
-                <p>서울 강남구 논현로175길 69 원영빌딩 4층</p>
-                <p>Inquiry: 0507-1327-8553</p>
-                <div style="margin: 30px 0; background: rgba(255,255,255,0.1); padding: 40px; text-align: center;">
-                    [ MAP PLACEHOLDER ]
-                </div>
-                <button class="hero-btn" onclick="openReservation()">Reservation & Inquiry</button>
-            </div>
-        </section>
-        <!-- Review & Gallery Section -->
-        <section id="review-gallery" style="background-color: #111;">
-            <div class="content" style="max-width: 1400px; display: flex; gap: 40px; text-align: left;">
-
-                <!-- Gallery Container -->
-                <div style="flex: 1;">
-                    <h2>Gallery</h2>
-                    <p>디오리엔탈 스파의 품격 있는 공간</p>
-                    <div class="gallery-grid">
-                        <img src="images/bg_home.jpg" alt="Home" onclick="openLightbox(this.src)">
-                        <img src="images/bg_about.jpg" alt="About" onclick="openLightbox(this.src)">
-                        <img src="images/bg_technique.jpg" alt="Technique" onclick="openLightbox(this.src)">
-                        <img src="images/bg_program.jpg" alt="Program" onclick="openLightbox(this.src)">
-                        <img src="images/bg_location.jpg" alt="Location" onclick="openLightbox(this.src)">
+                    <div>
+                        <span
+                            style="display:block; color:var(--primary-color); font-size:0.8rem; margin-bottom:5px;">Text
+                            Layout</span>
+                        <label>X: <input type="range" id="text-x" min="-500" max="500"></label>
+                        <label>Y: <input type="range" id="text-y" min="-500" max="500"></label>
+                        <label>Scale: <input type="range" id="text-scale" min="0.5" max="2" step="0.1"></label>
                     </div>
                 </div>
 
-                <!-- Review Container -->
-                <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 10px;">
-                    <h2>Reviews</h2>
-                    <div id="review-list" class="review-list">
-                        <!-- Reviews injected here -->
-                    </div>
-
-                    <form id="review-form" class="review-form">
-                        <h3>Write a Review</h3>
-                        <input type="text" id="review-name" placeholder="Name" required>
-                        <select id="review-rating">
-                            <option value="5">★★★★★ (5/5)</option>
-                            <option value="4">★★★★☆ (4/5)</option>
-                            <option value="3">★★★☆☆ (3/5)</option>
-                        </select>
-                        <textarea id="review-text" placeholder="Share your experience..." required></textarea>
-                        <button type="submit" class="hero-btn" style="width: 100%; margin-top: 10px;">Submit
-                            Review</button>
-                    </form>
+                <!-- Admin Panel (Save/ChangePW) -->
+                <div class="admin-panel" id="admin-panel">
+                    <button id="admin-login-btn" class="utility-btn">Admin Login</button>
+                    <button id="change-pw-btn" class="utility-btn" style="display: none;">비밀번호 변경</button>
+                    <button id="save-config-btn" class="utility-btn" style="display: none;">변경사항 저장 (Download
+                        Config)</button>
                 </div>
-
             </div>
-        </section>
+    </div>
+    </div>
+    <!-- Hidden File Input for Background Change -->
+    <input type="file" id="bg-upload" accept="image/*,video/*" style="display: none;">
+    </section>
 
-        <!-- Lightbox Modal -->
-        <div id="lightbox" class="modal" onclick="closeLightbox()">
-            <span class="close-modal">&times;</span>
-            <img id="lightbox-img" style="max-width: 90%; max-height: 90%; border: 2px solid var(--primary-color);">
+    <!-- About Section -->
+    <section id="about" style="background-image: url('images/bg_about.jpg');">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2 id="about-title" data-key="about.title">PREMIUM ORIENTAL SPA</h2>
+            <p id="about-quote" data-key="about.quote">"멈춰버린 당신의 시간, 디오리엔탈스파에서 다시 흐르다."</p>
+            <p id="about-desc" data-key="about.desc">최고급 테라피스트, 최상급 오일. 당신의 피부가 원하는 단 하나의 선택.<br>
+                1:1 맞춤형 컨설팅으로 당신의 몸 상태에 가장 완벽한 케어를 설계해 드립니다.</p>
+            <br>
+            <button class="hero-btn" id="shop-tour-btn">Shop Tour Video</button>
+            <!-- Hidden File Input for Video Upload (Admin) -->
+            <input type="file" id="video-upload" accept="video/*" style="display: none;">
         </div>
+    </section>
+
+    <!-- Technique Section -->
+    <section id="technique" style="background-image: url('images/bg_technique.jpg');">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Our Techniques</h2>
+            <div class="card-grid">
+                <div class="card" onclick="showDetail('aroma')">
+                    <h3>Aroma / Oil</h3>
+                    <p>향기 테라피</p>
+                </div>
+                <div class="card" onclick="showDetail('dry')">
+                    <h3>Dry / Therapy</h3>
+                    <p>건식 마사지</p>
+                </div>
+                <div class="card" onclick="showDetail('foot')">
+                    <h3>Foot Special</h3>
+                    <p>전문 발마사지</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section id="program" style="background-image: url('images/bg_program.jpg');">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Program & Pricing</h2>
+            <p>12월 할인 & 회원가 특별 혜택</p>
+            <div class="program-list" id="program-list">
+                <!-- Items will be injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Review & Gallery Section -->
+    <section id="review-gallery" style="background-color: #111;">
+        <div class="content" style="max-width: 1400px; display: flex; gap: 40px; text-align: left;">
+
+            <!-- Gallery Container -->
+            <div style="flex: 1;">
+                <h2>Gallery</h2>
+                <p>디오리엔탈 스파의 품격 있는 공간</p>
+                <div class="gallery-grid">
+                    <img src="images/bg_home.jpg" alt="Home" onclick="openLightbox(this.src)">
+                    <img src="images/bg_about.jpg" alt="About" onclick="openLightbox(this.src)">
+                    <img src="images/bg_technique.jpg" alt="Technique" onclick="openLightbox(this.src)">
+                    <img src="images/bg_program.jpg" alt="Program" onclick="openLightbox(this.src)">
+                    <img src="images/bg_location.jpg" alt="Location" onclick="openLightbox(this.src)">
+                    <img src="images/gallery_add_1.jpg" alt="Gallery 1" onclick="openLightbox(this.src)">
+                    <img src="images/gallery_add_2.jpg" alt="Gallery 2" onclick="openLightbox(this.src)">
+                    <img src="images/gallery_add_3.jpg" alt="Gallery 3" onclick="openLightbox(this.src)">
+                    <img src="images/gallery_add_4.jpg" alt="Gallery 4" onclick="openLightbox(this.src)">
+                    <img src="images/gallery_add_5.jpg" alt="Gallery 5" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+
+            <!-- Review Container -->
+            <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 10px;">
+                <h2>Reviews</h2>
+                <div id="review-list" class="review-list">
+                    <!-- Reviews injected here -->
+                </div>
+
+                <form id="review-form" class="review-form">
+                    <h3>Write a Review</h3>
+                    <input type="text" id="review-name" placeholder="Name" required>
+                    <select id="review-rating">
+                        <option value="5">★★★★★ (5/5)</option>
+                        <option value="4">★★★★☆ (4/5)</option>
+                        <option value="3">★★★☆☆ (3/5)</option>
+                    </select>
+                    <textarea id="review-text" placeholder="Share your experience..." required></textarea>
+                    <button type="submit" class="hero-btn" style="width: 100%; margin-top: 10px;">Submit
+                        Review</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section id="location" style="background-image: url('images/bg_location.jpg');">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Location & Inquiry</h2>
+            <p id="loc-address" data-key="location.address">서울 강남구 논현로175길 69 원영빌딩 4층</p>
+            <p>Inquiry: <span id="loc-inquiry" data-key="location.inquiry">0507-1327-8553</span></p>
+            <div style="margin: 30px 0; background: rgba(255,255,255,0.1); padding: 40px; text-align: center;">
+                [ MAP PLACEHOLDER ]
+            </div>
+            <button class="hero-btn" onclick="openReservation()">Reservation & Inquiry</button>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="modal" onclick="closeLightbox(event)">
+        <span class="close-modal">&times;</span>
+        <button class="lightbox-nav prev" onclick="changeImage(-1, event)">&#10094;</button>
+        <img id="lightbox-img" style="max-width: 90%; max-height: 90%; border: 2px solid var(--primary-color);">
+        <button class="lightbox-nav next" onclick="changeImage(1, event)">&#10095;</button>
+    </div>
     </div>
 
     <!-- Modals -->
@@ -196,6 +249,7 @@
         </div>
     </div>
 
+    <script src="site_config.js"></script>
     <script src="script.js"></script>
 </body>
 
